@@ -1,27 +1,20 @@
 import asyncio
-from pyrogram import Client
-from ntgcalls import PyTgCalls, idle
-from ntgcalls.types import MediaStream
+from pytgcalls import PyTgCalls, idle
 
-CHAT_ID = -1002052767861  # Update with your chat ID
-PLAY_URL = 'http://docs.evostream.com/sample_content/assets/sintel1m720p.mp4'
-
-app = Client("my_bot")
-
-async def start_audio_stream():
-    group_call = PyTgCalls(app)
-    await group_call.start()
-    await group_call.join_group_call(
-        CHAT_ID,
+async def start_video_stream():
+    chat_id = -1002052767861
+    app = PyTgCalls()
+    await app.start()
+    await app.join_group_call(
+        chat_id,
         MediaStream(
-            PLAY_URL,
+            'https://prod-ent-live-gm.jiocinema.com/hls/live/2100323/hd_akamai_androidmob_avc_hin_ipl_s1_m1250324/master_720p.m3u8'
         )
     )
 
 async def main():
-    await start_audio_stream()
+    await start_video_stream()
     await idle()
 
 if __name__ == "__main__":
-    app.start()
     asyncio.run(main())
