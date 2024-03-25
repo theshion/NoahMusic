@@ -5,7 +5,7 @@ from pytgcalls.types import InputMediaAudio
 app = PyTgCalls()
 
 # Define your chat ID and audio stream URL
-chat_id = -1001185324811
+chat_id = -1002052767861
 audio_stream_url = "https://docs.evostream.com/sample_content/assets/sintel1m720p.mp4"
 
 # Function to start playing audio in a group call
