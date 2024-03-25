@@ -11,7 +11,7 @@ async def start_audio_stream():
 
     await client.start()
 
-    chat_id = -1001185324811  # Replace with the ID of the chat where you want to play the audio
+    chat_id = -1002052767861  # Replace with the ID of the chat where you want to play the audio
 
     stream = await client.get_stream(
         "https://prod-ent-live-gm.jiocinema.com/hls/live/2100323/hd_akamai_androidmob_avc_hin_ipl_s1_m1250324/master_720p.mp3"
