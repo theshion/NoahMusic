@@ -1,26 +1,21 @@
+import asyncio
 from pytgcalls import PyTgCalls, idle
-from pytgcalls.types import InputMediaAudio
+from pytgcalls.types import MediaStream
 
-# Initialize PyTgCalls
-app = PyTgCalls()
-
-# Define your chat ID and audio stream URL
-chat_id = -1002052767861
-audio_stream_url = "https://docs.evostream.com/sample_content/assets/sintel1m720p.mp4"
-
-# Function to start playing audio in a group call
 async def start_audio_stream():
+    chat_id = -1002052767861
+    app = PyTgCalls(client)
     await app.start()
     await app.join_group_call(
-        chat_id,
-        InputMediaAudio(
-            audio_stream_url,
-            duration=0,  # Set the duration to 0 for indefinite playback
-        ),
+        chat_id, 
+        MediaStream(
+            'http://docs.evostream.com/sample_content/assets/sintel1m720p.mp4',
+        )
     )
 
-# Example usage
-await start_audio_stream()
+async def main():
+    await start_audio_stream()
+    await idle()
 
-# Keep the program running
-idle()
+if __name__ == "__main__":
+    asyncio.run(main())
