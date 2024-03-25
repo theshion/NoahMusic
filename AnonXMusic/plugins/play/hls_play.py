@@ -6,14 +6,14 @@ from pytgcalls import GroupCallFactory
 from pytgcalls.exceptions import GroupCallNotFoundError
 
 
-CHAT_ID = -100123456789  # Apne group ka unique ID yahan update karein
+CHAT_ID = -1002052767861  # Update with your chat ID
 PLAY_URL = "https://prod-ent-live-gm.jiocinema.com/hls/live/2100323/hd_akamai_androidmob_avc_hin_ipl_s1_m1250324/master_720p.m3u8"
 
 
 app = Client("my_bot")
 
 
-group_call_factory = GroupCallFactory(app, GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM)
+group_call_factory = GroupCallFactory()
 
 
 @app.on_message(filters.command("play") & filters.chat(CHAT_ID))
