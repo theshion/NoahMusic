@@ -3,7 +3,7 @@ from pytgcalls import PyTgCalls, idle
 from pytgcalls.types import MediaStream
 
 async def start_audio_stream():
-    chat_id = -1001185324811
+    chat_id = -1002052767861
     app = PyTgCalls()
     await app.start()
     await app.join_group_call(
