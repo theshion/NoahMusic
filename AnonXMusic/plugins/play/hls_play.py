@@ -3,11 +3,11 @@ from pytgcalls import PyTgCalls, idle
 from pytgcalls.types import MediaStream
 
 async def start_audio_stream():
-    chat_id = -1002052767861
-    app = PyTgCalls(client)
+    chat_id = -1001185324811
+    app = PyTgCalls()
     await app.start()
     await app.join_group_call(
-        chat_id, 
+        chat_id,
         MediaStream(
             'http://docs.evostream.com/sample_content/assets/sintel1m720p.mp4',
         )
