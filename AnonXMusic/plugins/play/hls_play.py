@@ -8,7 +8,7 @@ async def start_video_stream():
     await app.join_group_call(
         chat_id,
         MediaStream(
-            'https://prod-ent-live-gm.jiocinema.com/hls/live/2100323/hd_akamai_androidmob_avc_hin_ipl_s1_m1250324/master_720p.m3u8'
+            'http://docs.evostream.com/sample_content/assets/sintel1m720p.mp4'
         )
     )
 
