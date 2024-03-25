@@ -1,44 +1,26 @@
-import asyncio
-import os
+from pytgcalls import PyTgCalls, idle
+from pytgcalls.types import InputMediaAudio
 
-from pyrogram import Client, filters
-from pytgcalls import GroupCallFactory
-from pytgcalls.exceptions import GroupCallNotFoundError
+# Initialize PyTgCalls
+app = PyTgCalls()
 
+# Define your chat ID and audio stream URL
+chat_id = -1001185324811
+audio_stream_url = "https://docs.evostream.com/sample_content/assets/sintel1m720p.mp4"
 
-CHAT_ID = -1002052767861  # Update with your chat ID
-PLAY_URL = "https://prod-ent-live-gm.jiocinema.com/hls/live/2100323/hd_akamai_androidmob_avc_hin_ipl_s1_m1250324/master_720p.m3u8"
-
-
-app = Client("my_bot")
-
-
-group_call_factory = GroupCallFactory()
-
-
-@app.on_message(filters.command("play") & filters.chat(CHAT_ID))
-async def play(_, message):
-    group_call = group_call_factory.get_group_call()
-    try:
-        await group_call.join(CHAT_ID)
-    except GroupCallNotFoundError:
-        await message.reply_text("You must first start a voice chat in this group!")
-    else:
-        await group_call.start_audio(PLAY_URL)
-        await message.reply_text("Playing...")
-
-
-@app.on_message(filters.command("stop") & filters.chat(CHAT_ID))
-async def stop(_, message):
-    group_call = group_call_factory.get_group_call()
-    await group_call.stop_audio()
-    await message.reply_text("Stopped!")
-
-
-async def main():
+# Function to start playing audio in a group call
+async def start_audio_stream():
     await app.start()
-    await idle()
+    await app.join_group_call(
+        chat_id,
+        InputMediaAudio(
+            audio_stream_url,
+            duration=0,  # Set the duration to 0 for indefinite playback
+        ),
+    )
 
+# Example usage
+await start_audio_stream()
 
-if __name__ == "__main__":
-    asyncio.run(main())
+# Keep the program running
+idle()
